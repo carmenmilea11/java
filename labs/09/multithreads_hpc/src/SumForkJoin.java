@@ -1,6 +1,9 @@
-public class SumForkJoin {
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveTask;
 
-    private final int threshold = 1000;
+public class SumForkJoin extends RecursiveTask<Long> {
+
+    private final int threshold = 5000;
 
     private int startIndex;
     private int stopIndex;
@@ -12,7 +15,7 @@ public class SumForkJoin {
         this.array = array;
     }
 
-    private Long compute(){
+    protected Long compute(){
         if(stopIndex - startIndex <= threshold){
             Long sum = 0L;
             for(int i = startIndex; i < stopIndex; i++){
@@ -23,8 +26,13 @@ public class SumForkJoin {
             int middle = startIndex + (stopIndex - startIndex) / 2;
             SumForkJoin left = new SumForkJoin(startIndex, middle, array);
             SumForkJoin right = new SumForkJoin(middle, stopIndex, array);
+            left.fork();
+            Long rightResult = right.compute();
+            Long leftResult = left.join();
+            return leftResult + rightResult;
 
         }
     }
+
 }
 

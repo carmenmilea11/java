@@ -125,4 +125,14 @@ void main() {
     stopTime = System.currentTimeMillis();
     System.out.println("Elapsed time: " + (stopTime - startTime) + " Sum: " + sum);
 
+    //FORK JOIN
+    sum = 0L;
+    startTime = System.currentTimeMillis();
+
+    sum = ForkJoinPool.commonPool().invoke(
+            new SumForkJoin(0, vector.length, vector)
+    );
+
+    stopTime = System.currentTimeMillis();
+    System.out.println("Elapsed time: " + (stopTime - startTime) + " Sum: " + sum);
 }
