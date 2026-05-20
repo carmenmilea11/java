@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bookStore>
+    <bookList>
+        <book>
+            <author>Author 1</author>
+            <name>Book 1</name>
+        </book>
+        <book>
+            <author>Author 2</author>
+            <name>Book 2</name>
+        </book>
+    </bookList>
+    <name>Carturesti</name>
+</bookStore>
